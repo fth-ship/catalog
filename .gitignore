@@ -1,2 +1,3 @@
 node_modules/
 *.sw*
+config/development/rotten-api-key.js

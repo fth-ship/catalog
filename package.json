@@ -7,6 +7,10 @@
   },
   "dependencies": {
     "express": "3.4.8",
-    "jade": "*"
+    "jade": "*",
+    "superagent": "^0.17.0"
+  },
+  "devDependencies": {
+    "debug": "^0.7.4"
   }
 }

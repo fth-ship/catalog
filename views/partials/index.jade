@@ -1,1 +1,8 @@
 h1 Catalog
+
+label Search:
+  input(ng-model="q", ng-keypress="onKeyPress($event)")
+
+div(ng-repeat="movie in movies")
+  img(src="{{movie.posters.thumbnail}}")
+  span {{movie.title}}

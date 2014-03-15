@@ -2,12 +2,16 @@ doctype html
 html(ng-app='catalog')
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/css/style.css')
   body
     block content
+
     script(src='/lib/angular.min.js')
-    script(src='/lib/angular.min.js.map')
     script(src='/lib/angular-resource.min.js')
-    script(src='/lib/angular-resource.min.js.map')
+    script(src='/lib/angular-route.min.js')
     script(src='/js/app.js')
+    script(src='/js/filters.js')
+    script(src='/js/services.js')
+    script(src='/js/directives.js')
+    script(src='/js/controllers.js')
 

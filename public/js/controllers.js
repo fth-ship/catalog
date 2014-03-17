@@ -1,10 +1,23 @@
-function indexHandler($scope, $http) {
+function indexHandler($scope, $http, $window) {
   $scope.q = '';
-  $scope.movies = [];
+  $scope.shelfs = [];
+  $window.movies = $scope.movies = [];
 
   function fetchData () {
+    var shelfSlice = 0;
+    var jump = 4;
+    var shelfsLimit = null;
+
     function successHandler (data) {
-      $scope.movies = data.result;
+      $scope.shelfs = [];
+      $window.movies = $scope.movies = data.result;
+      shelfsLimit = Math.round($scope.movies.length / jump);
+
+      for (var i = 0, l = shelfsLimit; i <= l; i += 1) {
+        var limit = shelfSlice + jump;
+        $scope.shelfs.push($scope.movies.slice(shelfSlice, limit));
+        shelfSlice = limit;
+      }
     }
 
     function errorHandler (data) {
@@ -26,6 +39,8 @@ function indexHandler($scope, $http) {
   $scope.onKeyPress = onKeyPress;
 }
 
+function detailHandler($scope, $http, $window) {}
 angular
   .module('catalog.controllers', [])
-  .controller('index', ['$scope', '$http', indexHandler]);
+  .controller('index', ['$scope', '$http', '$window', indexHandler])
+  .controller('detail', ['$scope', '$http', '$window', detailHandler]);

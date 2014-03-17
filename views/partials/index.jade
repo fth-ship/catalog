@@ -1,8 +1,36 @@
-h1 Catalog
+br
+.col-lg-12: .row
+  .navbar.navbar-inverse(role='navigation')
+    .container-fluid
+      .navbar-header
+        a(href='/').navbar-brand Catalog 
 
-label Search:
-  input(ng-model="q", ng-keypress="onKeyPress($event)")
+      form.navbar-form.navbar-right
+        .form-search.search-only
+          i.search-icon.glyphicon.glyphicon-search
+          input(ng-model='q' ng-keypress='onKeyPress($event)' placeholder='Search for a movie...').form-control.search-query
 
-div(ng-repeat="movie in movies")
-  img(src="{{movie.posters.thumbnail}}")
-  span {{movie.title}}
+.col-lg-12(ng-hide='movies.length' ng-show='!movies.length')
+  .jumbotron
+    .jumbotron-contents.text-center
+      h1 Start your travel typing a movie name... 
+
+.col-lg-12(ng-hide='!movies.length' ng-show='movies.length')
+  h2 Results
+  hr
+  .row(ng-repeat='shelf in shelfs')
+    .col-sm-6.col-md-3(ng-repeat="movie in shelf"): a(href='#')
+      .thumbnail
+        img.img-rounded(src="{{movie.posters.detailed}}")
+        .caption.text-center
+          h2 {{movie.title}}
+          p
+            label Year
+              | {{movie.year}}
+          p
+            label Duration:
+              | {{movie.runtime}}
+          p {{movie.critics_consensus}}
+          hr
+          p
+            button.btn.btn-primary See more

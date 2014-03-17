@@ -2,10 +2,12 @@ doctype html
 html(ng-app='catalog')
   head
     title= title
-    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bootflat/css/bootflat.min.css')
   body
     block content
 
+    script(src='/bootflat/js/icheck.min.js')
     script(src='/lib/angular.min.js')
     script(src='/lib/angular-resource.min.js')
     script(src='/lib/angular-route.min.js')

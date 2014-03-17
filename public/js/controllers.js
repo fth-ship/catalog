@@ -1,16 +1,19 @@
 function indexHandler($scope, $http, $window) {
   $scope.q = '';
   $scope.shelfs = [];
-  $window.movies = $scope.movies = [];
+  $scope.movies = $window.movies = [];
+  $scope.searching = false;
 
   function fetchData () {
+    $scope.searching = true;
     var shelfSlice = 0;
     var jump = 4;
     var shelfsLimit = null;
 
     function successHandler (data) {
+      $scope.searching = false;
       $scope.shelfs = [];
-      $window.movies = $scope.movies = data.result;
+      $scope.movies = data.result;
       shelfsLimit = Math.round($scope.movies.length / jump);
 
       for (var i = 0, l = shelfsLimit; i <= l; i += 1) {
@@ -21,6 +24,7 @@ function indexHandler($scope, $http, $window) {
     }
 
     function errorHandler (data) {
+      $scope.searching = false;
       console.log('Error loading movies!');
     }
 

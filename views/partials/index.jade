@@ -10,20 +10,25 @@ br
           i.search-icon.glyphicon.glyphicon-search
           input(ng-model='q' ng-keypress='onKeyPress($event)' placeholder='Search for a movie...').form-control.search-query
 
-.col-lg-12(ng-hide='movies.length' ng-show='!movies.length')
+.col-lg-12(ng-hide='movies.length || (searching)' ng-show='!movies.length')
   .jumbotron
     .jumbotron-contents.text-center
       h1 Start your travel typing a movie name... 
+
+.col-lg-12(ng-hide='!searching' ng-show='searching')
+  .jumbotron
+    .jumbotron-contents.text-center
+      h1 Searching, wait for a second... 
 
 .col-lg-12(ng-hide='!movies.length' ng-show='movies.length')
   h2 Results
   hr
   .row(ng-repeat='shelf in shelfs')
-    .col-sm-6.col-md-3(ng-repeat="movie in shelf"): a(href='#')
+    .col-sm-6.col-md-3(ng-repeat="movie in shelf")
       .thumbnail
         img.img-rounded(src="{{movie.posters.detailed}}")
         .caption.text-center
-          h2 {{movie.title}}
+          a(href='/detail/{{movie.id}}'): h2 {{movie.title}}
           p
             label Year
               | {{movie.year}}
@@ -33,4 +38,4 @@ br
           p {{movie.critics_consensus}}
           hr
           p
-            button.btn.btn-primary See more
+            a(href='/detail/{{movie.id}}').btn.btn-primary See more
